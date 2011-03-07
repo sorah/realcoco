@@ -314,6 +314,6 @@ Net::HTTP.start(endpoint.host,endpoint.port) do |http|
     else
       exit
     end
-    sleep [0.1].sample
+    sleep [0.5,1].sample
   end
 end
