@@ -73,7 +73,6 @@ function get_location(flag) {
     cache: false,
     dataType: "json",
     success: function(data){
-      console.log(data);
       if(data["result"] == "success") {
         var pos = new google.maps.LatLng(data["latitude"],data["longitude"]);
         map.panTo(pos);
@@ -85,7 +84,6 @@ function get_location(flag) {
         var icon_img = new google.maps.MarkerImage(arrow_image(data["heading"]))
         icon_img.size = new google.maps.Size(img_size,img_size);
         icon_img.origin = new google.maps.Point(img_size/2,img_size/2);
-        console.log(icon_img);
         icon = new google.maps.Marker({
           position: pos,
           map: map,
@@ -95,7 +93,6 @@ function get_location(flag) {
       setTimeout(get_location,1);
     },
     error: function(error){
-      console.log("Error");
       setTimeout(get_location,1);
     }
   });
