@@ -81,9 +81,9 @@ function get_location(flag) {
         if(data["address"])
           $("#title_bar").text(data["address"]);
         if(icon) icon.setMap(null);
-        var icon_img = new google.maps.MarkerImage(arrow_image(data["heading"]))
-        icon_img.size = new google.maps.Size(img_size,img_size);
-        icon_img.origin = new google.maps.Point(img_size/2,img_size/2);
+        var icon_img = new google.maps.MarkerImage(
+          arrow_image(data["heading"]),null,null,
+          new google.maps.Point(img_size/2,img_size/2),null);
         icon = new google.maps.Marker({
           position: pos,
           map: map,
