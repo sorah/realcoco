@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="js/realcoco.js"></script>
+    <title><%= @yml[:title] %></title>
+  </head>
+  <body>
+    <div id="gmap"></div>
+    <div id="title_bar" class="bar">
+      <%= @yml[:title] %>
+    </div>
+    <div id="streaming">
+      <% if @justin || @ustream %>
+        <div id="streaming_box">
+          <div id="streaming_justin" class="streaming_flash">
+            <% if @justin %>
+              <%= @justin %>
+            <% end %>
+          </div>
+          <div id="streaming_ustream" class="streaming_flash">
+            <% if @ustream %>
+              <%= @ustream %>
+            <% end %>
+          </div>
+        </div>
+        <ul id="streaming_buttons">
+          <li><div id="streaming_b_hide">Hide</div></li>
+          <% if @justin %>
+            <li><div id="streaming_b_justin">Jtv</div></li>
+          <% end %>
+          <% if @ustream %>
+            <li><div id="streaming_b_ustream">Ust</div></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div id="bottom_bar" class="bar">
+      -- km/h
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+
+html { height: 100% }
+body { height: 100%; margin: 0px; padding: 0px }
+
+
+* {
+  font-family: sans-serif;
+}
+
+.bar {
+  padding: 3px 10px;
+  background-color: rgba(255,255,255,0.8);
+}
+
+#title_bar {
+  top: 20px !important;
+  left: 80px !important;
+}
+
+#gmap {
+  width: 100%;
+  height: 100%;
+  /*position: fixed;*/
+  top: 0px;
+  left: 0px;
+}
+
+ul#streaming_buttons {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+ul#streaming_buttons li {
+  float: right;
+}
+
+#streaming_buttons div {
+  padding: 1px 2px;
+  margin: 0px 2px;
+  background-color: rgba(255,255,255,0.5);
+  font-size: 0.8em;
+}
+
+#streaming_buttons div.button_active {
+  background-color: rgba(220,220,255,0.2);
+  font-weight: bold;
+}
+
+.streaming_flash {
+  display: none;
+}
+
+
