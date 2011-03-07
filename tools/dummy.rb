@@ -307,7 +307,7 @@ token = ARGV[1]
 Net::HTTP.start(endpoint.host,endpoint.port) do |http|
   salt = http.get("/salt").body
   data.each_with_index do |d,i|
-    result = JSON.parse(http.post("/location","latitude=#{d[0][0]}&longitude=#{d[0][1]}&heading=#{i*5}&speed=#{rand(100)}&address=#{rand(1000)}&token=#{Digest::SHA1.hexdigest(salt+token)}").body)
+    result = JSON.parse(http.post("/location","latitude=#{d[0][0]}&longitude=#{d[0][1]}&heading=#{i*10}&speed=#{rand(100)}&address=#{rand(1000)}&token=#{Digest::SHA1.hexdigest(salt+token)}").body)
     p result
     if result["result"] == "success"
       salt = result["salt"]

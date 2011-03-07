@@ -8,7 +8,7 @@ img_size = 50;
 
 function arrow_image(d) {
   if(d == -1) {
-    return "img/arrow--1.png";
+    return "img/point.png";
   }
   if(images[d]) {
     return images[d];
