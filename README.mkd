@@ -1,0 +1,87 @@
+# Realcoco - more realtime imacoco now!
+
+<http://imacoco-gps.appspot.com/> is not realtime (reloading interval is long).
+
+Realcoco is more realtime than imacoco-gps because it's using comet.
+
+## Feature
+
+* Show Justin.tv or Ustream broadcast on map
+* Realtime GPS tracking on web
+* Easy API
+* Using Google Maps API
+* __Doesn't support Internet Explorer.__
+
+## How to Install
+
+### Requirements
+
+* (Apache||Nginx) with Passenger or some Rack compatibility Servers. (Don't support CGI mode)
+* sinatra
+
+### Config
+
+write to `config.yml` using YAML.
+
+    title:   title          # <title>title</title> on HTML
+    token:   unique_token   # Use for updating location
+    ie:      message_for_ie # Message for Internet Explorers (optional)
+    ustream: channel_name   # ustream.tv/channel/<channel_name> (optional)
+    justin:  channel_name   # justin.tv/<channel_name> (optional)
+
+Example
+
+    title: "sorah's GPS live tracking"
+    token: password_needs_to_be_secret
+    ie: "i don't like ie"
+    ustream: sorah
+    justin: sora_h
+
+## API
+
+### Get
+
+`/location` GET
+
+get location information. It takes over 10 seconds sometime.
+
+Returns:
+
+JSON
+
+* result: "success" = success, "try\_again" = try again.
+* latitude: Latitude with decimal.
+* longitude: Longitude with decimal.
+* heading: Heading with Degree. but -1 means that not have heading information.
+* speed: Speed with kilometers per hour; "-" means that not have speed information.
+* address: Address of location. (Optional)
+
+### Update
+
+`/location` POST
+
+update location information.
+
+Params:
+
+* token: sha1(salt+token). salt is from `/salt`, token is from `config.yml`.
+* latitude: Latitude with decimal; like `36.55928375`.
+* longitude: Longitude with decimal; like `139.89827331`.
+* heading: Heading with Degree. (Optional)
+* speed: Speed with kilometers per hour. (Optional)
+* address: address of your location. (Optional)
+
+Returns:
+
+JSON
+
+* result: "success" = success, "unauthorized" = wrong token, "param" = Longitude or latitude haven't specified.
+* salt: Salt for next updating.
+
+### Authenticate
+
+`/salt` GET
+
+get salt for authenticating.
+
+## Clients
