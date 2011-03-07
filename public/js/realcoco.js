@@ -1,15 +1,33 @@
 map = null;
 icon = null;
 images = []
+img = new Image();
+img.src = "img/arrow.png";
+
+img_size = 50;
 
 function arrow_image(d) {
+  if(d == -1) {
+    return "img/arrow--1.png";
+  }
   if(images[d]) {
-    return images[d]
+    return images[d];
   }else{
-    c = document.getElementById("canvas").getContext("2d");
-    var img = new Image();
-    img.src = "img/arrow.png";
-    return images[d]
+    var c = document.createElement("canvas");
+    c.className = "rimage"
+    c.width = img_size;
+    c.height = img_size;
+    document.body.appendChild(c);
+    var x = c.getContext("2d");
+    x.save();
+    x.translate(c.width/2, c.height/2);
+    var r = d/180*Math.PI;
+    x.rotate(r);
+    x.translate(-img.width/2, -img.height/2);
+    x.drawImage(img,0,0);
+    x.restore();
+    images[d] = c.toDataURL();
+    return images[d];
   }
 }
 
@@ -64,17 +82,21 @@ function get_location(flag) {
         if(data["address"])
           $("#title_bar").text(data["address"]);
         if(icon) icon.setMap(null);
+        var icon_img = new google.maps.MarkerImage(arrow_image(data["heading"]))
+        icon_img.size = new google.maps.Size(img_size,img_size);
+        icon_img.origin = new google.maps.Point(img_size/2,img_size/2);
+        console.log(icon_img);
         icon = new google.maps.Marker({
           position: pos,
           map: map,
-          icon: "img/arrow-"+data["heading"]+".png"
+          icon: icon_img
         });
       }
-      setTimeout(get_location,20);
+      setTimeout(get_location,1);
     },
     error: function(error){
       console.log("Error");
-      setTimeout(get_location,20);
+      setTimeout(get_location,1);
     }
   });
 }
