@@ -101,7 +101,7 @@ function get_location(flag) {
 $(document).ready(function() {
   var coodinate = new google.maps.LatLng(35.681353, 139.767509);
   var options = {
-    zoom: 8,
+    zoom: 13,
     center: coodinate,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   };
