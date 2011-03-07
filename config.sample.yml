@@ -1,4 +1,5 @@
-title:   title        # <title>title</title> on HTML
-ustream: channel_name # ustream.tv/channel/<channel_name>
-justin:  channel_name # justin.tv/<channel_name>
-token:   unique_token # Use for updating location
+title:   title          # <title>title</title> on HTML
+token:   unique_token   # Use for updating location
+ie:      message_for_ie # Message for Internet Explorers (optional)
+ustream: channel_name   # ustream.tv/channel/<channel_name> (optional)
+justin:  channel_name   # justin.tv/<channel_name> (optional)
