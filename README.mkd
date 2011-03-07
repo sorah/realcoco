@@ -85,3 +85,11 @@ JSON
 get salt for authenticating.
 
 ## Clients
+
+coming soon!
+
+## Testing
+
+`ruby tools/dummy.rb URL token`
+
+It sends dummy GPS information.
