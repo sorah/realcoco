@@ -50,4 +50,6 @@ ul#streaming_buttons li {
   display: none;
 }
 
-
+#img {
+  display: none;
+}

@@ -60,7 +60,7 @@ module Broadcaster
   end
 end
 
-Broadcaster.push {:result => :try_again}
+Broadcaster.push({:result => :try_again})
 
 USTREAM_API = "http://api.ustream.tv/json/channel/%s/getEmbedTag"
 
@@ -77,6 +77,10 @@ justin = yml[:justin] ? <<EOF : nil
 	<param name="flashvars" value="channel=#{yml[:justin]}&auto_play=false&start_volume=25" />
 </object>
 EOF
+
+get '/hello', :agent => /MSIE/ do
+  yml[:ie] || "This site doesn't support Internet Explorer."
+end
 
 get "/" do
   @yml, @ustream, @justin = yml, ustream, justin
@@ -101,7 +105,7 @@ post "/location" do
           :latitude  => params[:latitude].to_f,
           :longitude => params[:longitude].to_f,
           :heading   => params[:heading].to_i || -1,
-          :speed     => params[:speed] || "-"}
+          :speed     => params[:speed].to_f || "-"}
   data.merge!(:address => params[:address]) if params[:address]
   Broadcaster.push data.to_json
   {:result => :success, :salt => Auth.salt}.to_json
